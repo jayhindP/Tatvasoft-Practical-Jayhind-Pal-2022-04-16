@@ -41,10 +41,16 @@ export class LoginComponent implements OnInit {
         formData.append(key, jsonValues[key]);
       }
       this.blog.login(formData).subscribe((res: any)=> {
-        this.submitLoading = false;
-        this.toaster.success("You are logged-in Successfully.");
-        localStorage.setItem("user", JSON.stringify(res));
-        this.router.navigate(['/home']);
+        if(res.status===1)
+        {
+          this.submitLoading = false;
+          this.toaster.success("You are logged-in Successfully.");
+          localStorage.setItem("user", JSON.stringify(res.data));
+          this.router.navigate(['/home']);
+        }else{
+          this.submitLoading = false;
+          this.toaster.error(res.data);
+        }
       },(e)=>{
         this.submitLoading = false;
         this.toaster.error(e?.error.message);

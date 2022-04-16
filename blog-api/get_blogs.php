@@ -1,11 +1,10 @@
 <?php
 include("./database.php");
 
-$user_id = $_GET['user_id'];
-
 $sql = "SELECT * FROM blogs";
 
-if(!empty($user_id)){
+if(!empty($_GET['user_id'])){
+	$user_id = $_GET['user_id'];
 	$sql .= " WHERE user_id='$user_id'";
 }
 

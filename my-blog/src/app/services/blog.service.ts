@@ -24,7 +24,10 @@ export class BlogService {
   updatePost(data: any): Observable<any> {
     return this.http.post<any>(environment.API_URL + 'update_blog.php', data);
   }
-  getPost(params: any): Observable<any> {
+  deletePost(data: any): Observable<any> {
+    return this.http.post<any>(environment.API_URL + 'delete_blog.php', data);
+  }
+  getPosts(params: any): Observable<any> {
     return this.http.get<any>(environment.API_URL + 'get_blogs.php', {params});
   }
 

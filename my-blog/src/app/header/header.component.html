@@ -11,4 +11,8 @@
         <mat-icon>home</mat-icon>
         <span>My Blogs</span>
     </a>
+    <a *ngIf="user.id" (click)="logout();" class="menu-item">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+    </a>
 </header>
