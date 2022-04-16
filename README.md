@@ -9,3 +9,10 @@ Angular Practical - for CRUD operations
 
 # Install APIs in PHP
 - download and install xampp
+- move blog-api folder into your htdocs folder C:\xampp\htdocs
+- start Apache and MySql in xampp
+- go to http://localhost/phpmyadmin/
+- add a database "my_blogs"
+- import my_blogs.sql file
+![image](https://user-images.githubusercontent.com/77678059/163669100-18c4cd21-5326-4b4e-9503-65dfc5d196f0.png)
+
