@@ -1,0 +1,18 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #051c47;
+    padding: 10px 0;
+    text-align: right;
+    z-index: 99;
+}
+.header .menu-item {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.header .menu-item span {
+    position: relative;
+    left: 2px;
+}

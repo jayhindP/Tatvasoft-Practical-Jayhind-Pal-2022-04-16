@@ -1,0 +1,40 @@
+<section class="main-section">
+    <div class="container">
+        <mat-card class="login-card">
+            <mat-card-header>
+                <mat-card-title> <mat-icon>lock</mat-icon> Login To Your Account</mat-card-title>
+                <mat-card-subtitle>Login To Your Account and explore your blogs</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="form" (submit)="formSubmit();">
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>Email Id*</mat-label>
+                            <input type="email" formControlName="email" class="mat-input" matInput>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.email.invalid && form.controls.email.dirty">
+                            * Email is invalid
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>Password*</mat-label>
+                            <input type="password" formControlName="password" matInput>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.password.invalid && form.controls.password.dirty">
+                            * Password is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <button type="submit" mat-raised-button color="primary"
+                            [disabled]="submitLoading">
+                            Login
+                            <span *ngIf="submitLoading">...</span>
+                        </button>
+                        <a [routerLink]="['/signup']" mat-button color="primary">Signup</a>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</section>

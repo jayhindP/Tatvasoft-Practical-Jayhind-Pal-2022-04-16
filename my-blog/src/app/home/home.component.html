@@ -1,0 +1,75 @@
+<section class="main-section">
+    <div class="container">
+        <mat-card class="login-card" *ngIf="showForm; else blogsList;">
+            <mat-card-header>
+                <mat-card-title> <mat-icon>account_circle</mat-icon> Create a Post</mat-card-title>
+                <mat-card-subtitle>Add a Post on Your Blog</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="form" (submit)="formSubmit();">
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>Title*</mat-label>
+                            <input type="email" formControlName="title" class="mat-input" matInput>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.title.invalid && form.controls.title.dirty">
+                            * Title is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>Description*</mat-label>
+                            <textarea formControlName="description" class="mat-input" matInput></textarea>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.description.invalid && form.controls.description.dirty">
+                            * Description is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>Date*</mat-label>
+                            <input type="date" formControlName="date" class="mat-input" matInput>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.date.invalid && form.controls.date.dirty">
+                            * Date is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <label class="custom-label">Status *</label>
+                        <select formControlName="status" class="mat-select mb-3">
+                            <option value="">Choose Status</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Published">Published</option>
+                        </select>
+                        <div class="form-error text-danger" *ngIf="form.controls.status.invalid && form.controls.status.dirty">
+                            * Status is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <button type="submit" mat-raised-button color="primary"
+                            [disabled]="submitLoading">
+                            Save Post
+                            <span *ngIf="submitLoading">...</span>
+                        </button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+        <ng-template #blogsList>
+            <mat-card class="login-card my-2">
+                <mat-card-header>
+                    <mat-card-title>Create a Post</mat-card-title>
+                    <mat-card-subtitle>Date: 12/05/2022 (Pending)</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>adfadad asfjsdfse, fsdfjhsdfsdm, fsdfiosdfsd fsdfsdfsdfsdfsdf</p>
+                </mat-card-content>
+                <mat-card-content>
+                    <button mat-button>EDIT</button>
+                    <button mat-button>DELETE</button>
+                </mat-card-content>
+            </mat-card>
+        </ng-template>
+    </div>
+</section>

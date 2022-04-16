@@ -1,0 +1,78 @@
+<section class="main-section">
+    <div class="container">
+        <mat-card class="login-card">
+            <mat-card-header>
+                <mat-card-title> <mat-icon>account_circle</mat-icon> Create a Account</mat-card-title>
+                <mat-card-subtitle>Create a new Account and explore your blogs</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="form" (submit)="formSubmit();">
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>First Name*</mat-label>
+                            <input type="email" formControlName="firstName" class="mat-input" matInput>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.firstName.invalid && form.controls.firstName.dirty">
+                            * First Name is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>Last Name*</mat-label>
+                            <input type="email" formControlName="lastName" class="mat-input" matInput>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.lastName.invalid && form.controls.lastName.dirty">
+                            * Last Name is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>Email Id*</mat-label>
+                            <input type="email" formControlName="email" class="mat-input" matInput>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.email.invalid && form.controls.email.dirty">
+                            * Email is invalid
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>Password*</mat-label>
+                            <input type="password" formControlName="password" matInput>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.password.invalid && form.controls.password.dirty">
+                            * Password is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <mat-form-field appearance="standard" class="mat-form-field">
+                            <mat-label>DOB*</mat-label>
+                            <input type="date" formControlName="dob" class="mat-input" matInput>
+                        </mat-form-field>
+                        <div class="form-error text-danger" *ngIf="form.controls.dob.invalid && form.controls.dob.dirty">
+                            * DOB is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <label class="custom-label">Role *</label>
+                        <select formControlName="role" class="mat-select mb-3">
+                            <option value="">Choose Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                        </select>
+                        <div class="form-error text-danger" *ngIf="form.controls.role.invalid && form.controls.role.dirty">
+                            * Role is required
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <button type="submit" mat-raised-button color="primary"
+                            [disabled]="submitLoading">
+                            Signup
+                            <span *ngIf="submitLoading">...</span>
+                        </button>
+                        <a [routerLink]="['/login']" mat-button color="primary">Login</a>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</section>
