@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { BlogService } from '../services/blog.service';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +21,9 @@ export class SignupComponent implements OnInit {
   });
 
   constructor(
-    private toaster: ToastrService
+    private router: Router,
+    private toaster: ToastrService,
+    private blog: BlogService,
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +39,13 @@ export class SignupComponent implements OnInit {
       this.submitLoading = false;
       return ;
     }else{
-      this.toaster.success("asfasfd");
+      this.blog.signup(this.form.value).subscribe((res: any)=> {
+        this.toaster.success("You have Registered Successfully.");
+        localStorage.setItem("user", JSON.stringify(res));
+        this.router.navigate(['/home']);
+      },(e)=>{
+        this.toaster.error(e?.error.message);
+      })
     }
   }
 
