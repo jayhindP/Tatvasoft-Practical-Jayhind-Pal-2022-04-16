@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { BlogService } from '../services/blog.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,9 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private toaster: ToastrService
+    private router: Router,
+    private toaster: ToastrService,
+    private blog: BlogService,
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +35,20 @@ export class LoginComponent implements OnInit {
       this.submitLoading = false;
       return ;
     }else{
-      this.toaster.success("asfasfd");
+      let jsonValues = this.form.value;
+      let formData = new FormData();
+      for(let key in jsonValues){
+        formData.append(key, jsonValues[key]);
+      }
+      this.blog.login(formData).subscribe((res: any)=> {
+        this.submitLoading = false;
+        this.toaster.success("You are logged-in Successfully.");
+        localStorage.setItem("user", JSON.stringify(res));
+        this.router.navigate(['/home']);
+      },(e)=>{
+        this.submitLoading = false;
+        this.toaster.error(e?.error.message);
+      })
     }
   }
 }

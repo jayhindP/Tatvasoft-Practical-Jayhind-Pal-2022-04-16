@@ -39,11 +39,19 @@ export class SignupComponent implements OnInit {
       this.submitLoading = false;
       return ;
     }else{
-      this.blog.signup(this.form.value).subscribe((res: any)=> {
+      let jsonValues = this.form.value;
+      let formData = new FormData();
+      for(let key in jsonValues){
+        formData.append(key, jsonValues[key]);
+      }
+      
+      this.blog.signup(formData).subscribe((res: any)=> {
+        this.submitLoading = false;
         this.toaster.success("You have Registered Successfully.");
         localStorage.setItem("user", JSON.stringify(res));
         this.router.navigate(['/home']);
       },(e)=>{
+        this.submitLoading = false;
         this.toaster.error(e?.error.message);
       })
     }
