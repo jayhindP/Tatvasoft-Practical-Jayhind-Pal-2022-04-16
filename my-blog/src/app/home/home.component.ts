@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   public submitLoading: boolean = false;
   public showForm: boolean = false;
   public form = new FormGroup({
+    user_id: new FormControl(null),
     title: new FormControl(null, [Validators.required]),
     description: new FormControl(null, [Validators.required]),
     date: new FormControl(null, [Validators.required]),
